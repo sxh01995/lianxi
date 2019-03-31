@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianxi.dao.goodDao.WxbGoodTypeDao">
+    <!--建立结果集映射关系-->
+    <resultMap id="GoodTypeMap" type="com.lianxi.entity.good.WxbGoodType">
+        <id property="typeId" column="type_id"></id>
+        <result property="typeName" column="type_name"></result>
+        <result property="parentId" column="parent_id"></result>
+        <result property="typeTag" column="type_tag"></result>
+        <result property="orderNo" column="order_no"></result>
+        <result property="alisaCode" column="alisa_code"></result>
+        <result property="typeName" column="type_name"></result>
+    </resultMap>
+    <sql id="GoodType">
+        type_id,type_name,parent_id,type_tag,order_no,alisa_code,type_name
+    </sql>
+    <select id="findAll" resultMap="GoodTypeMap">
+        SELECT
+        <include refid="GoodType"></include>
+        FROM wxb_good_type
+    </select>
+</mapper>

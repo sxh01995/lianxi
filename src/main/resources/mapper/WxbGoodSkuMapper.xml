@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianxi.dao.goodDao.WxbGoodSkuDao">
+    <!--建立结果集映射关系-->
+    <resultMap id="GoodSkuMap" type="com.lianxi.entity.good.WxbGoodSku">
+        <id property="skuId" column="sku_id"></id>
+        <result property="skuName" column="sku_name"></result>
+        <result property="skuCost" column="sku_cost"></result>
+        <result property="skuPrice" column="sku_price"></result>
+        <result property="skuPmoney" column="sku_pmoney"></result>
+        <result property="goodId" column="good_id"></result>
+        <result property="orderNo" column="order_no"></result>
+        <result property="serviceMoney" column="service_money"></result>
+    </resultMap>
+    <sql id="GoodSku">
+        sku_id,sku_name,sku_cost,sku_price,sku_pmoney,good_id,order_no,service_money
+    </sql>
+    <select id="findById" resultMap="GoodSkuMap">
+        SELECT
+        <include refid="GoodSku"></include>
+        FROM wxb_good_sku
+        WHERE good_id=#{id}
+    </select>
+    <insert id="insert">
+        INSERT INTO wxb_good_sku (
+        <include refid="GoodSku"></include>
+        )
+        VALUES
+        <foreach collection="skus" index="index" item="sku" separator=",">
+            (#{sku.skuId},#{sku.sku_name},#{sku.skuCost},#{sku.skuPrice},
+            #{sku.skuPmoney},#{sku.goodId},#{sku.orderNo},#{sku.serviceMoney})
+        </foreach>
+    </insert>
+</mapper>
