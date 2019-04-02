@@ -46,7 +46,8 @@ public class WxbGoodController {
 //        goodService.insert(wxbGood,file,file1,file2);
 //    }
     @RequestMapping("/add")
-    public void add(WxbGood wxbGood,MultipartFile file, MultipartFile file1, MultipartFile file2){
+    public String add(WxbGood wxbGood,MultipartFile file, MultipartFile file1, MultipartFile file2){
         goodService.insert(wxbGood,file,file1,file2);
+        return "1";
     }
 }

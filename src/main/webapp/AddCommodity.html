@@ -447,8 +447,8 @@
                         </small>
                     </h1>
                 </div>
-
-                <form method="post" action="good/add" name="copy_form" id="copy_form"  enctype="multipart/form-data">
+<!--method="post" action="good/add"-->
+                <form  name="copy_form" id="copy_form"  enctype="multipart/form-data">
                     <div class="widget-main">
                         <!--<input type="hidden" id="sku_str" name="sku_str" value="">-->
                         <!--<input type="hidden" id="ctype" name="ctype" value="custGood">-->
@@ -698,9 +698,10 @@
                             <tr>
                                 <td colspan="2" align="center">
                                     <!--onclick="submitData();"-->
-							             <span id="submit"  class="btn btn-lxg btn-primary">
+							             <span id="submit"  class="btn btn-lxg btn-primary" onclick="submitData();">
 							               <i class="icon-save bigger-120"></i>
-							                <input type="submit" value="保存">
+							                <!--<input type="submit" value="保存">-->
+                                             保存
 							             </span>
                                     <span id="back" onclick="goToPage('/cust/goods/list');" class="btn btn-lxg btn-undo">
 							             <i class="icon-undo bigger-120"></i>
@@ -794,192 +795,157 @@
 <!-- menu over-->
 
 <script type="text/javascript">
-//    var baseUrl = '';
-//    function submitData(){
-//        var gid = "";
-////        var url = "good/ceshi";
-//        //var spc_id = getRadioValue('scopy_id');
-//        var spc_ids = getCheckBoxValue('scopy_id');
-//        var zon_ids = getCheckBoxValue('zcopy_id');
-//        var copy_ids = getCheckBoxValue("gcopy");
-//        if(isNull($("#good_name").val())){
-//            $.dialog.alert("对不起！商品名称不能为空！");
-//            return false;
+    var baseUrl = '';
+    function submitData(){
+        var gid = "";
+//        var url = "good/ceshi";
+        //var spc_id = getRadioValue('scopy_id');
+        var spc_ids = getCheckBoxValue('scopy_id');
+        var zon_ids = getCheckBoxValue('zcopy_id');
+        var copy_ids = getCheckBoxValue("gcopy");
+        if(isNull($("#good_name").val())){
+            $.dialog.alert("对不起！商品名称不能为空！");
+            return false;
+        }
+
+        if(isNull($("#type_id").val())){
+            $.dialog.alert("对不起！请选择商户分类！");
+            return false;
+        }
+
+        if(isNull($("#promote_desc").val())){
+            $.dialog.alert("对不起！推广说明不能为空！");
+            return false;
+        }
+
+        if(isNull(copy_ids)){
+            $.dialog.alert("对不起！请选择微信文案！");
+            return false;
+        }
+
+        /*if(isNull(spc_id)){
+          $.dialog.//alert("对不起！请选择站内文案！",null,false);
+          return false;
+        }*/
+
+        if(isNull($("#order_no").val())){
+            $.dialog.alert("对不起！排序编号不能为空！");
+            return false;
+        }
+
+        //处理sku
+        var tab_rows = document.getElementById('tcbg').rows.length
+        if(tab_rows==1){
+            $.dialog.alert("对不起！请先设置商品套餐！");
+            return false;
+        }
+//
+//        var ms="";
+//        var cb="";
+//        var jg="";
+//        var fc="";
+//        var kffc="";
+//        for(var i=0;i<tab_rows-1;i++){
+//
+//            if(!isNull($("#sku"+(i+1)).val())){
+//                ms += $("#sku"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#cb"+(i+1)).val())){
+//                cb += $("#cb"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#jg"+(i+1)).val())){
+//                jg += $("#jg"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#fc"+(i+1)).val())){
+//                fc += $("#fc"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#kffc"+(i+1)).val())){
+//                kffc += $("#kffc"+(i+1)).val()+"|";
+//            }
+//
 //        }
+
+//        var sku_str="";
+//        for(var i=0;i<tab_rows-1;i++){
 //
-//        if(isNull($("#type_id").val())){
-//            $.dialog.alert("对不起！请选择商户分类！");
-//            return false;
+//            if(!isNull($("#sku_id_"+(i+1)).val())){
+//                sku_str += $("#sku_id_"+(i+1)).val()+"|";
+//            }else{
+//                sku_str += "newid|";
+//            }
+//
+//            if(!isNull($("#sku"+(i+1)).val())){
+//                sku_str += $("#sku"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#cb"+(i+1)).val())){
+//                sku_str += $("#cb"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#jg"+(i+1)).val())){
+//                sku_str += $("#jg"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#fc"+(i+1)).val())){
+//                sku_str += $("#fc"+(i+1)).val()+"|";
+//            }
+//
+//            if(!isNull($("#kffc"+(i+1)).val())){
+//                sku_str += $("#kffc"+(i+1)).val()+"|";
+//            }
+//
+//            sku_str +="$";
 //        }
-//
-//        if(isNull($("#promote_desc").val())){
-//            $.dialog.alert("对不起！推广说明不能为空！");
-//            return false;
-//        }
-//
-//        if(isNull(copy_ids)){
-//            $.dialog.alert("对不起！请选择微信文案！");
-//            return false;
-//        }
-//
-//        /*if(isNull(spc_id)){
-//          $.dialog.//alert("对不起！请选择站内文案！",null,false);
-//          return false;
-//        }*/
-//
-//        if(isNull($("#order_no").val())){
-//            $.dialog.alert("对不起！排序编号不能为空！");
-//            return false;
-//        }
-//
-//        //处理sku
-//        var tab_rows = document.getElementById('tcbg').rows.length
-//        if(tab_rows==1){
-//            $.dialog.alert("对不起！请先设置商品套餐！");
-//            return false;
-//        }
-////
-////        var ms="";
-////        var cb="";
-////        var jg="";
-////        var fc="";
-////        var kffc="";
-////        for(var i=0;i<tab_rows-1;i++){
-////
-////            if(!isNull($("#sku"+(i+1)).val())){
-////                ms += $("#sku"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#cb"+(i+1)).val())){
-////                cb += $("#cb"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#jg"+(i+1)).val())){
-////                jg += $("#jg"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#fc"+(i+1)).val())){
-////                fc += $("#fc"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#kffc"+(i+1)).val())){
-////                kffc += $("#kffc"+(i+1)).val()+"|";
-////            }
-////
-////        }
-//
-////        var sku_str="";
-////        for(var i=0;i<tab_rows-1;i++){
-////
-////            if(!isNull($("#sku_id_"+(i+1)).val())){
-////                sku_str += $("#sku_id_"+(i+1)).val()+"|";
-////            }else{
-////                sku_str += "newid|";
-////            }
-////
-////            if(!isNull($("#sku"+(i+1)).val())){
-////                sku_str += $("#sku"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#cb"+(i+1)).val())){
-////                sku_str += $("#cb"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#jg"+(i+1)).val())){
-////                sku_str += $("#jg"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#fc"+(i+1)).val())){
-////                sku_str += $("#fc"+(i+1)).val()+"|";
-////            }
-////
-////            if(!isNull($("#kffc"+(i+1)).val())){
-////                sku_str += $("#kffc"+(i+1)).val()+"|";
-////            }
-////
-////            sku_str +="$";
-////        }
-//
-//        //验证商品是否已经存在
-//        if(checkGoodName($("#good_name").val(),gid)=='true'){
-//            $.dialog.alert("对不起！您已经录入同名的商品了！");
-//            return false;
-//        }
-//
-//        $.dialog.confirm('你确定要提交数据吗？', function(){
-//            $.dialog.tips('数据保存中...',600,'loading.gif');
-////            var sform = document.copy_form;
-////            if(sform){
-////                sform.action = baseUrl+"/"+url;
-////                $('#sku_str').val(sku_str);
-////                $('#sku_title').val(ms);
-////                $('#sku_cost').val(cb);
-////                $('#sku_price').val(jg);
-////                $('#sku_pmoney').val(fc);
-////                $('#service_money').val(kffc);
-////                $('#copy_id').val(copy_ids);
-////                $('#spc_id').val(spc_ids);
-////                $('#zon_id').val(zon_ids);
+
+        //验证商品是否已经存在
+        if(checkGoodName($("#good_name").val(),gid)=='true'){
+            $.dialog.alert("对不起！您已经录入同名的商品了！");
+            return false;
+        }
+
+        $.dialog.confirm('你确定要提交数据吗？', function(){
+            $.dialog.tips('数据保存中...',600,'loading.gif');
+//            var sform = document.copy_form;
+//            if(sform){
+//                sform.action = baseUrl+"/"+url;
+//                $('#sku_str').val(sku_str);
+//                $('#sku_title').val(ms);
+//                $('#sku_cost').val(cb);
+//                $('#sku_price').val(jg);
+//                $('#sku_pmoney').val(fc);
+//                $('#service_money').val(kffc);
+//                $('#copy_id').val(copy_ids);
+//                $('#spc_id').val(spc_ids);
+//                $('#zon_id').val(zon_ids);
 //                tianjia()
+            var form=new FormData(document.getElementById("copy_form"));
+            $.ajax({
+                url:"good/add",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function (data) {
+                    if(data="1"){
+                        alert("上传成功")
+                        window.location.href="merchandise.html"
+                    }else {
+                        alert("上传失败")
+                        return;
+                    }
+                }
+            })
 //                setTimeout(function(){
 //                    sform.submit();
 //                },500);
-////            }
-//        });
-//
-//    }
-//    function tianjia() {
-//        var name=$("#good_name").val();
-//        //alert(name)
-//        var typId=$("#type_id").find("option:selected").val();
-//        //alert(typId)
-//        var orderNo=$("#order_no").val();
-//        //alert(orderNo)
-//        var sellNum=$("#sell_num").val();
-//        //alert(sellNum)
-//        var file=$("#smfile").val();
-//        //alert(file)
-//        var file1=$("#smfile1").val();
-//        //alert(file1)
-//        var file2=$("#smfile2").val();
-//        //alert(file2)
-//        var promoteDesc=$("#promote_desc").val()
-//        //alert(promoteDesc)
-//        var tag=""
-//        var tags=document.getElementsByName("tags");
-//        //alert(tags)
-//        for(var i=0; i<tags.length; i++){
-//            if(tags[i].checked){
-//                tag=tags[i].defaultValue
 //            }
-//        }
-//        //alert(tag)
-////            var gpy=null
-////            var asd=document.getElementsByName("gcopy");
-////            for(var i=0; i<asd.length; i++){
-////                if(asd[i].checked){
-////                    gpy=asd[i].defaultValue;
-////                }
-////            }
-//        //alert(gpy)
-//        var zonId=null
-//        var zonIds=document.getElementsByName("zonId");
-//        for(var i=0; i<zonIds.length; i++){
-//            if(zonIds[i].checked){
-//                zonId=zonIds[i].defaultValue;
-//            }
-//        }
-//        //alert(zonId)
-//        var copyDesc=$("#copy_desc").val()
-//        //alert(copyDesc)
-//        var forwardLink=$("forward_link").val()
-//        //alert(forwardLink)
-//        $.post("good/add",{name:name,typId:typId,orderNo:orderNo,sellNum:sellNum,
-//            file:file,file1:file1,file2:file2,tag:tag,zonId:zonId,copyDesc:copyDesc,forwardLink:forwardLink},function (data) {
-//
-//        })
-//        window.location.href="merchandise.html"
-//    }
+        });
+
+    }
     //验证商户是否在使用
     function checkGoodName(name,gid){
         var param = "good_id="+gid+"&good_name="+name+"&now="+new Date().getTime();
