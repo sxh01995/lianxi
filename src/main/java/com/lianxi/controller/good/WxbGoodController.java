@@ -29,25 +29,8 @@ public class WxbGoodController {
     public Integer pagination(){
         return goodService.divide();
     }
-//    @RequestMapping("/add")
-//    public void add(String name, String typId, Integer orderNo, Integer sellNum,
-//                    MultipartFile file, MultipartFile file1, MultipartFile file2,
-//                    String tag, String zonId, String copyDesc, String forwardLink){
-//        System.out.println(file+"*****"+file1+"********"+file2);
-//        WxbGood wxbGood =new WxbGood();
-//        wxbGood.setGoodName(name);
-//        wxbGood.setTypeId(typId);
-//        wxbGood.setOrderNo(orderNo);
-//        wxbGood.setSellNum(sellNum);
-//        wxbGood.setTags(tag);
-//        wxbGood.setZonId(zonId);
-//        wxbGood.setCopyDesc(copyDesc);
-//        wxbGood.setForwardLink(forwardLink);
-//        goodService.insert(wxbGood,file,file1,file2);
-//    }
     @RequestMapping("/add")
     public String add(WxbGood wxbGood,MultipartFile file, MultipartFile file1, MultipartFile file2){
-        goodService.insert(wxbGood,file,file1,file2);
-        return "1";
+        return goodService.insert(wxbGood,file,file1,file2);
     }
 }

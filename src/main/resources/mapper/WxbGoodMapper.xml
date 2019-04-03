@@ -244,4 +244,99 @@
             </if>
         </trim>
     </insert>
+    <!--删除商品-->
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM wxb_good WHERE good_id =#{id}
+    </delete>
+    <!--更新-->
+    <update id="update" parameterType="java.lang.Integer">
+        UPDATE wxb_good
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodName!=null">
+                good_name=#{goodName},
+            </if>
+            <if test="customerId!=null">
+                customer_id=#{customerId},
+            </if>
+            <if test="goodPic!=null">
+                good_pic=#{goodPic},
+            </if>
+            <if test="goodPic1!=null">
+                good_pic1=#{goodPic1},
+            </if>
+            <if test="goodPic2!=null">
+                good_pic2=#{goodPic2},
+            </if>
+            <if test="promoteDesc!=null">
+                promote_desc=#{promoteDesc},
+            </if>
+            <if test="skuTitle!=null">
+                sku_title=#{skuTitle},
+            </if>
+            <if test="skuCost!=null">
+                sku_cost=#{skuCost},
+            </if>
+            <if test="skuPrice!=null">
+                sku_price=#{skuPrice},
+            </if>
+            <if test="skuPmoney!=null">
+                sku_pmoney=#{skuPmoney},
+            </if>
+            <if test="copyIds!=null">
+                copy_ids=#{copyIds},
+            </if>
+            <if test="forwardLink!=null">
+                forward_link=#{forwardLink},
+            </if>
+            <if test="orderNo!=null">
+                order_no=#{orderNo},
+            </if>
+            <if test="typeId!=null">
+                type_id=#{typeId},
+            </if>
+            <if test="tags!=null">
+                tags=#{tags},
+            </if>
+            <if test="state!=null">
+                state=#{state},
+            </if>
+            <if test="createTime!=null">
+                create_time=#{createTime},
+            </if>
+            <if test="toped!=null">
+                toped=#{toped},
+            </if>
+            <if test="recomed!=null">
+                recomed=#{recomed},
+            </if>
+            <if test="topedTime!=null">
+                toped_time=#{topedTime},
+            </if>
+            <if test="spcId!=null">
+                spc_id=#{spcId},
+            </if>
+            <if test="zonId!=null">
+                zon_id=#{zonId},
+            </if>
+            <if test="sellNum!=null">
+                sell_num=#{sellNum},
+            </if>
+            <if test="website!=null">
+                website=#{website},
+            </if>
+            <if test="iswxpay!=null">
+                iswxpay=#{iswxpay},
+            </if>
+            <if test="isfdfk!=null">
+                isfdfk=#{isfdfk},
+            </if>
+            <if test="leixingId!=null">
+                leixing_id=#{leixingId},
+            </if>
+            <if test="kfqq!=null">
+                kfqq=#{kfqq},
+            </if>
+        </trim>
+        WHERE good_id=#{goodId}
+    </update>
 </mapper>

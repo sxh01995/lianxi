@@ -23,7 +23,7 @@ public class WxbGoodServiceImp{
         return goodDao.findAll();
     }
     //添加
-    public void insert(WxbGood wxbGood, MultipartFile file, MultipartFile file1, MultipartFile file2){
+    public String insert(WxbGood wxbGood, MultipartFile file, MultipartFile file1, MultipartFile file2){
         try {
             if (file != null) {
                 String s = UUID.randomUUID().toString().replaceAll("-", "");
@@ -43,12 +43,13 @@ public class WxbGoodServiceImp{
         }catch (IOException e) {
             e.printStackTrace();
             System.out.println("图片添加失败");
-            return;
+            return "0";
         }
         wxbGood.setCreateTime(new Date());
         String[] goodId = UUID.randomUUID().toString().split("-");
         wxbGood.setGoodId(goodId[0]);
         goodDao.insert(wxbGood);
+        return "1";
     }
     //根据ID查询
     public WxbGood findById(String goodId){
