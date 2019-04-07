@@ -636,7 +636,7 @@
                 $("#sp").html("")
                 var sql=""
                 $.each(data,function (index,obj) {
-                    alert(obj.recomed);
+//                    alert(obj.recomed);
                     sql+="<tr>\n" +
                         "    <td class=\"center\">"+(index+1)+"</td>\n" +
                         "\t<td class=\"left\"><a href=\"\" onclick=\"\">"+obj.goodName+"</a></td>\n" +
@@ -662,12 +662,12 @@
                             "\t</td>\n"
                     }
                     sql+="\t<td class=\"center\">\n" +
-                        "\t<span class=\"label label-sm label-success\">ʳۋԐЧ</span>\n" +
+                        "\t<span class=\"label label-sm label-success\">等待审核</span>\n" +
                         "\t</td>\n" +
                         "\t<td class=\"left\">\n" +
                         "\t<div class=\"visible-md visible-lg hidden-sm hidden-xs btn-group\" style=\"align:center\">\n" +
-                        "        <button class=\"btn btn-xs btn-primary\" onclick=\"window.location.href='/cust/goods/add?good_id=pb1n3rya'\">\n" +
-                        "            <i class=\"icon-edit bigger-120\"></i>\n" +
+                        "        <button class=\"btn btn-xs btn-primary\" onclick=\"window.location.href='Product.html?id="+obj.goodId+"'\">\n" +
+                        "            <i class=\"icon-edit bigger-120\">修改</i>\n" +
                         "        </button>\n" +
                         "\t\t<button class=\"btn btn-xs btn-danger\" onclick=\"trashGood('pb1n3rya','1')\">\n" +
                         "            <i class=\"icon-trash bigger-120\"></i>\n" +

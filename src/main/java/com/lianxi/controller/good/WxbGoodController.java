@@ -33,4 +33,9 @@ public class WxbGoodController {
     public String add(WxbGood wxbGood,MultipartFile file, MultipartFile file1, MultipartFile file2){
         return goodService.insert(wxbGood,file,file1,file2);
     }
+    //查询单个商品信息
+    @RequestMapping("/findById")
+    public WxbGood findById(String id){
+        return goodService.findById(id);
+    }
 }
