@@ -13,7 +13,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springfr
     </context:component-scan>
 
     <context:property-placeholder location="classpath:dbconfig.properties"></context:property-placeholder>
-
+    <aop:aspectj-autoproxy/>
     <!-- 配置数据库和连接池信息，使用config.properties里面的值 -->
     <bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!-- 数据连接信息 -->

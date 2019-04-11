@@ -18,4 +18,6 @@ public interface WxbGoodDao {
     void insert(WxbGood good);
     //分页查询
     List<WxbGood> paging(@Param("index") Integer index,@Param("max") Integer max);
+    //修改
+    Integer update(WxbGood good);
 }

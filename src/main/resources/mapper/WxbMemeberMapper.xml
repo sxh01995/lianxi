@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianxi.dao.user.WxbMemeberDao">
+    <!--建立结果集映射关系-->
+    <resultMap id="WxbMemeberMap" type="com.lianxi.entity.user.WxbMemeber">
+        <id property="memeberId" column="memeber_id"></id>
+        <result property="account" column="account"></result>
+        <result property="qqNum" column="qq_num"></result>
+        <result property="email" column="email"></result>
+        <result property="phone" column="phone"></result>
+        <result property="recomUser" column="recom_user"></result>
+        <result property="registerTime" column="register_time"></result>
+        <result property="payAccount" column="pay_account"></result>
+        <result property="name" column="name"></result>
+        <result property="password" column="password"></result>
+        <result property="visitCode" column="visit_code"></result>
+        <result property="useRecom" column="use_recom"></result>
+        <result property="levelCode" column="level_code"></result>
+        <result property="mid" column="mid"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="memeberSalt" column="memeber_salt"></result>
+    </resultMap>
+    <!--定义个性字符串-->
+    <sql id="WxbMemeber">
+        memeber_id,account,qq_num,email,phone,recom_user,register_time,
+        pay_account,`name`,`password`,visit_code,use_recom,level_code,
+        mid,update_time,memeber_salt
+    </sql>
+    <!--登陆-->
+    <select id="findDengLu" resultMap="WxbMemeberMap">
+        SELECT
+        <include refid="WxbMemeber"></include>
+        FROM wxb_memeber
+        WHERE account=#{account}
+    </select>
+</mapper>
